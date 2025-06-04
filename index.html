@@ -1,8 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shyam Banerjee | A Stats Undergrad</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .toggle-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 10px;
+      cursor: pointer;
+      background: #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<a href="projects/projects_index.html">🚀 My Projects</a>
+  <div class="toggle-button" onclick="toggleDarkMode()">🌓</div>
+
+  <h1>Welcome, Shyam here!</h1>
+  <p>This is my personal GitHub Pages portfolio site.</p>
+  <a href="projects/index.html">🚀 My Projects</a>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    }
+
+    // Persist theme
+    window.onload = () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+      }
+    };
+  </script>
 </body>
 </html>
