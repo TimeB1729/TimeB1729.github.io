@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Random Forest Insights | Shyam Banerjee</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .toggle-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 10px;
+      cursor: pointer;
+      background: #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-button" onclick="toggleDarkMode()">🌓</div>
+
+  <h1>My Insights on Random Forests: From Trees to the Strong Law of Large Numbers</h1>
+
+  <h2>Introduction</h2>
+  <p>In my journey through data science and machine learning, I encountered Random Forests as one of the most powerful yet intuitively appealing ensemble models. What started as a curiosity about how this algorithm handles feature bias soon led me to a beautiful analogy with one of probability theory's cornerstone results: the Law of Large Numbers.</p>
+
+  <p>This post summarizes the insights I developed while exploring the internal mechanics of Random Forests, particularly around feature randomness, bias mitigation, and convergence behavior.</p>
+
+  <hr>
+
+  <h2>1. The Bias Question: Why Don't Random Forests Favor Weak Features?</h2>
+  <blockquote>
+    “If a Random Forest randomly samples features at each split, isn’t there a risk that weakly correlated predictors might dilute the power of strong ones?”
+  </blockquote>
+  <p>Turns out, the answer lies in the scale of the ensemble. While a single tree may randomly miss important features, across many trees, these stronger predictors will almost certainly appear in the sampled subsets multiple times. When they do, they are likely to be selected for splits because of their better splitting criteria (e.g., lower MSE or higher information gain).</p>
+
+  <p>Thus, stronger features shape the forest more than weaker ones <em>not because of explicit weighting</em>, but because they consistently perform better in local competitions within the sampled subsets.</p>
+
+  <hr>
+
+  <h2>2. Trees Are Noisy: But That’s Okay</h2>
+  <p>Decision Trees are high-variance, low-bias models. They are greedy, often overfit, and highly sensitive to changes in data. But Random Forests convert this weakness into strength by averaging predictions over many such trees. This stabilizes the output and smooths out overfitting.</p>
+
+  <hr>
+
+  <h2>3. An Analogy with the Law of Large Numbers</h2>
+  <blockquote>
+    A Decision Tree is to the Weak Law of Large Numbers (WLLN) as a Random Forest is to the Strong Law of Large Numbers (SLLN).
+  </blockquote>
+  <ul>
+    <li>A single decision tree is like a noisy estimator — it converges <strong>in probability</strong>, but not always reliably.</li>
+    <li>A Random Forest is like an average over many i.i.d. estimators — it converges <strong>almost surely</strong> to the expected predictor, assuming enough trees and enough diversity.</li>
+  </ul>
+  <p>This analogy helped me internalize <em>why</em> ensemble methods work, not just how.</p>
+
+  <hr>
+
+  <h2>4. Simulation: Seeing the Law in Action</h2>
+  <p>To visualize this, I ran a simulation using synthetic data based on the function <code>y = sin(x) + noise</code>. I trained several shallow "bad" trees (max depth = 1), several deeper "good" trees (max depth = 4), and finally, a full Random Forest (100 trees, max depth = 4).</p>
+
+  <p>The graph tells a compelling story:</p>
+  <ul>
+    <li>Bad trees fluctuated randomly and missed the true function.</li>
+    <li>Good trees improved the fit but still showed variation.</li>
+    <li>The Random Forest, though built from the same noisy data, <strong>smoothed out the noise and converged to the true signal</strong>.</li>
+  </ul>
+
+  <p>This is variance reduction in action.</p>
+
+  <hr>
+
+  <h2>Conclusion</h2>
+  <p>Random Forests are elegant because they embrace randomness and imperfection. By averaging weak learners, they unlock a form of statistical wisdom that reflects one of the deepest results in probability: the Law of Large Numbers.</p>
+
+  <p>This exploration not only gave me a stronger grasp of ensemble models but also showed how intuition and formal theory can work hand-in-hand in data science.</p>
+
+  <p>Thanks for reading! If you're curious, you can <a href="https://github.com/TimeB1729/astrostats_penn-state_2025/blob/main/My%20Jupyter%20Notebooks/RandomForestAnalysis.ipynb" target="_blank">view the notebook and simulation here</a>.</p>
+
+  <hr>
+
+  <p><em>Written by Shyam Banerjee, B.Stat Sophomore @ ISI Kolkata | Summer 2025 Student @ Penn State AstroStats</em></p>
+  
+  <p><a href="projects_index.html">← Back to Projects</a></p>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    }
+
+    window.onload = () => {
+      if (localStorage.getItem("theme") === "dark" ||
+         (!localStorage.getItem("theme") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.classList.add("dark");
+      }
+    };
+  </script>
+</body>
+</html>
