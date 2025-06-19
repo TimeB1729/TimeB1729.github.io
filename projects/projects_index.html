@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Projects | Shyam Banerjee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #ffffff;
@@ -18,8 +19,42 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       transition: background-color 0.3s, color 0.3s;
-      font-family: sans-serif;
-      padding: 20px;
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #83e24c;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    nav {
+      background-color: #e0e0e0;
+      padding: 1em;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 1em;
+      text-decoration: none;
+      color: #09ac32;
+      font-weight: bold;
+    }
+    section {
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 1em;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #777;
+      margin: 2em 0;
     }
 
     .toggle-button {
@@ -36,13 +71,29 @@
 <body>
   <div class="toggle-button" onclick="toggleDarkMode()">🌓</div>
 
-  <h1>🛠️ My Projects</h1>
-  <ul>
-    <li><a href="astrostats_summer_2025.html">📊 AstroStats Summer Research (Penn State)</a></li>
-    <!-- Add more projects here -->
-  </ul>
+  <header>
+    <h2>My Projects Index page</h2>
+    <p>Collection of my projects</p>
+  </header>
 
-  <a class="back-link" href="../index.html">← Back to Homepage</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects/projects_index.html">Projects</a>
+    <a href="mindspace/mindspace_index.html">Mindspace</a>
+    <a href="codespace/codespaces_index.html">Codespace</a>
+  </nav>
+
+  <section>
+    <h2>🧮 My Projects</h2>
+    <ul>
+      <li><a href="astrostats_summer_2025.html">📊 AstroStats Summer Research (Penn State)</a></li>
+      <!-- Add more projects here -->
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 Shyam Banerjee | This site is maintained on GitHub Pages.
+  </footer>
 
   <script>
     function toggleDarkMode() {

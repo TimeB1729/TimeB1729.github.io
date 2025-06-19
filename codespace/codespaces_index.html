@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Shyam Banerjee | A Stats Undergrad</title>
+  <title>Codespace | Shyam Banerjee</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -71,49 +71,42 @@
 <body>
   <div class="toggle-button" onclick="toggleDarkMode()">🌓</div>
 
-<header>
-  <h1>Homepage of Shyam's blogpost</h1>
-  <p>Fantasy and Realism combined</p>
-</header>
+  <header>
+    <h2>My Codespace Index page</h2>
+    <p>Collection of my code notebooks</p>
+  </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="projects/projects_index.html">Projects</a>
-  <a href="mindspace/mindspace_index.html">Mindspace</a>
-  <a href="codespace/codespaces_index.html">Codespace</a>
-</nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects/projects_index.html">Projects</a>
+    <a href="mindspace/mindspace_index.html">Mindspace</a>
+    <a href="codespace/codespaces_index.html">Codespace</a>
+  </nav>
 
- <section>
-  <h2>Welcome, Shyam here!</h2>
-  <p>This is my personal GitHub Pages portfolio site. Here you can find all my works (I've uploaded so far), including my recent projects and notebooks.</p>
+  <section>
+    <h2>💻 My Codespace</h2>
+    <ul>
+      <li><a href="astrostats_summer_2025.html">📊 AstroStats Summer Research (Penn State)</a></li>
+      <!-- Add more projects here -->
+    </ul>
+  </section>
 
-  <h3>About Me</h3>
-  <p>
-    <strong>Name:</strong> Shyam Banerjee<br>
-    <strong>Program:</strong> B.Stat (Hons.), Indian Statistical Institute, Kolkata<br>
-    <strong>E-Mail:</strong> <a href = "mailto:b27@gmail.com" target="_blank">b27shyam@gmail.com</p>
-    <a href = "Resume_SB.pdf" target="_blank">My Resume</a>
-    | <a href= "https://www.linkedin.com/in/shyam-banerjee-179b8b292/" target="_blank">LinkedIn Profile</a>
-  </p>
+  <footer>
+    &copy; 2025 Shyam Banerjee | This site is maintained on GitHub Pages.
+  </footer>
 
- </section>
-
-<footer>
-  &copy; 2025 Shyam Banerjee | This site is maintained on GitHub Pages.
-</footer>
-
-<script>
-  function toggleDarkMode() {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-  }
-
-  // Persist theme
-  window.onload = () => {
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark");
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
     }
-  };
-</script>
+
+    window.onload = () => {
+      if (localStorage.getItem("theme") === "dark" ||
+         (!localStorage.getItem("theme") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.classList.add("dark");
+      }
+    };
+  </script>
 </body>
 </html>
