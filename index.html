@@ -12,7 +12,7 @@
 
     body.dark {
       --bg-color: #121212;
-      --text-color: #dd9c0f;
+      --text-color: #ffffff;
     }
 
     body {
@@ -44,7 +44,9 @@
       max-width: 1200px;
       margin: 2em auto;
       padding: 1em;
-      background: white;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
