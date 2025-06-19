@@ -24,8 +24,8 @@
       padding: 0;
     }
     header {
-      background-color: #83e24c;
-      color: white;
+      background-color: #0ffaa0;
+      color: rgb(255, 255, 255);
       padding: 1em;
       text-align: center;
     }
@@ -39,6 +39,10 @@
       text-decoration: none;
       color: #09ac32;
       font-weight: bold;
+    }
+    nav a.active {
+      text-decoration: underline;
+      color: #005f1f; /* darker shade of green for emphasis */
     }
     section {
       max-width: 1200px;
@@ -79,7 +83,7 @@
 
   <nav>
     <a class = "back-link" href="../index.html">Home</a>
-    <a href="../projects/projects_index.html">Projects</a>
+    <a class="active" href="../projects/projects_index.html">Projects</a>
     <a href="../mindspace/mindspace_index.html">Mindspace</a>
     <a href="../codespace/codespaces_index.html">Codespace</a>
   </nav>
