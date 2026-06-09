@@ -38,9 +38,9 @@
   <div class="project-detail-header">
     <div class="project-detail-inner">
       <a href="../projects_index.html" class="back-link" style="color:rgba(255,255,255,0.35);">Projects</a>
-      <span class="eyebrow">Astrostatistics · Summer 2025</span>
+      <span class="eyebrow">Astrostatistics · Independent Research 2026</span>
       <h1>GP-based Imputation in<br>Kepler Stellar Light Curves</h1>
-      <p>AstroStatistics Group, Penn State University · First authored paper</p>
+      <p>Independent Research · 19-page manuscript</p>
     </div>
   </div>
 
@@ -58,24 +58,23 @@
 
     <h2>Overview</h2>
     <p>
-      This project was completed during the AstroStatistics summer research programme
-      at Penn State University in 2025. The work develops a Gaussian Process framework
+      This independent research project follows my participation in the AstroStatistics
+      summer school at Penn State University. The work develops a Gaussian Process framework
       for imputing missing observations in Kepler stellar photometric time series.
     </p>
     <p>
       Kepler light curves are affected by instrumental gaps, safe-mode events, and
-      scheduled downtime that result in missing data. Classical interpolation approaches
+      scheduled downtime that result in missing data. Classical deterministic interpolation approaches
       fail to respect the correlated, non-stationary nature of stellar flux. This study
-      applies GP regression with kernels tuned to stellar variability timescales.
+      applies GP regression with kernels tuned to specific stellar variability timescales.
     </p>
 
     <h2>Methods</h2>
     <p>
-      Three stellar variability classes are studied: quiet solar-like stars, RR Lyrae
-      pulsators, and short-period eclipsing binaries. For each class, appropriate
-      covariance kernels are selected (squared-exponential, quasi-periodic, and
-      composite kernels respectively) and hyperparameters are fitted by marginal
-      likelihood maximisation.
+      The study evaluates two specific regimes: a quiet solar-like star with stochastic scatter,
+      and an active star exhibiting quasi-periodic rotational modulation. For each dataset, appropriate
+      covariance kernels are selected (squared-exponential and quasi-periodic respectively) and
+      hyperparameters are fitted by marginal likelihood maximisation.
     </p>
     <p>
       The GP imputation procedure produces posterior predictive distributions over
@@ -85,10 +84,19 @@
 
     <h2>Highlights</h2>
     <ul>
-      <li>First application of class-specific GP kernels to Kepler gap-filling</li>
-      <li>Posterior predictive coverage analysis across three variability types</li>
-      <li>Comparison against linear interpolation and LOWESS baselines</li>
-      <li>Implementation in R using the <code>kernlab</code> and <code>gplite</code> packages</li>
+      <li>Posterior predictive coverage analysis across quiet and rotating stellar profiles.</li>
+      <li>Comparison against deterministic linear interpolation and ARIMA(1,0,2) baselines.</li>
+      <li>Implementation of GP-based probabilistic imputation and uncertainty quantification on Kepler observations.</li>
+      <li>Investigation of Change-Point Gaussian Process (CP-GP) models for shifting variance regimes.</li>
+    </ul>
+
+    <h2>Key Findings</h2>
+
+    <ul>
+      <li>Gaussian Processes and ARIMA achieved nearly identical predictive accuracy.</li>
+      <li>Predictive uncertainty exhibited near-ideal probabilistic calibration.</li>
+      <li>Stationary quasi-periodic kernels struggled with evolving rotational variability.</li>
+      <li>Results suggest a principled need for non-stationary GP formulations.</li>
     </ul>
 
     <h2>Supplementary Reading</h2>
