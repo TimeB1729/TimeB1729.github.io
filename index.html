@@ -6,7 +6,7 @@
   <title>Shyam Banerjee | Statistics at ISI Kolkata</title>
   <meta name="description" content="Shyam Banerjee — B.Stat undergraduate at ISI Kolkata. Research in astrostatistics, Bayesian inference, Gaussian processes, and quantitative finance.">
 
-  <!-- Theme toggle before body renders to prevent flash -->
+  <!-- Prevent dark-mode flash -->
   <script>
     (function() {
       var s = localStorage.getItem('theme');
@@ -27,18 +27,21 @@
 
   <!-- ══ HEADER ═════════════════════════════════════════════ -->
   <header class="site-header">
-    <a href="/" class="site-brand">S. Banerjee</a>
+    <a href="index.html" class="site-brand">S. Banerjee</a>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="/" class="active" aria-current="page">Home</a>
-      <a href="/projects">Projects</a>
-      <a href="/mindspace">Mindspace</a>
-      <a href="/codespace">Codespace</a>
+      <a href="index.html" class="active" aria-current="page">Home</a>
+      <a href="projects/projects_index.html">Projects</a>
+      <a href="mindspace/mindspace_index.html">Mindspace</a>
+      <a href="codespace/codespaces_index.html">Codespace</a>
     </nav>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">◐</button>
   </header>
 
   <!-- ══ HERO ═══════════════════════════════════════════════ -->
   <section class="hero" aria-labelledby="hero-heading">
+    <!-- Animated starfield — very subtle CSS-only dots -->
+    <canvas id="starfield" aria-hidden="true"></canvas>
+
     <div class="hero-inner">
       <span class="eyebrow">B.Stat (Hons.) · Indian Statistical Institute, Kolkata</span>
       <h1 id="hero-heading" class="hero-h1">
@@ -53,115 +56,225 @@
         <span class="tag" role="listitem">Bayesian Inference</span>
         <span class="tag" role="listitem">Gaussian Processes</span>
         <span class="tag" role="listitem">Rough Volatility</span>
+        <span class="tag" role="listitem">Time Series</span>
       </div>
+      <p class="math-accent" aria-hidden="true">∑ · P(A|B) · λ · σ · π · 𝔼[X]</p>
     </div>
   </section>
 
   <!-- ══ MAIN GRID ═══════════════════════════════════════════ -->
-  <main class="home-grid">
+  <main>
 
-    <!-- Recent work -->
-    <section aria-labelledby="work-heading">
-      <h2 class="col-title" id="work-heading">Recent Work</h2>
+    <div class="home-grid">
 
-      <article class="project-card">
-        <div class="project-card-tags">
-          <span class="p-tag p-tag--domain">Astrostatistics</span>
-          <span class="p-tag p-tag--status-pub">Published</span>
-        </div>
-        <h3>GP-based Imputation in Kepler Stellar Light Curves</h3>
-        <p>Gaussian Process framework for imputing missing photometric observations.
-           Applied to Kepler mission data across three stellar variability classes.</p>
-        <div class="project-card-meta">
-          <span>Penn State · Summer 2025</span>
-          <div class="project-card-links">
-            <a href="projects/astrostats/Banerjee_GP_Kepler_Imputation_26.pdf"
-               target="_blank" rel="noopener">PDF</a>
-            <a href="https://github.com/TimeB1729/astrostats-simulations"
-               target="_blank" rel="noopener">GitHub</a>
+      <!-- ── Recent work ──────────────────────────────────── -->
+      <section aria-labelledby="work-heading">
+        <h2 class="col-title" id="work-heading">Recent Work</h2>
+
+        <article class="project-card">
+          <div class="project-card-tags">
+            <span class="p-tag p-tag--domain">Astrostatistics</span>
+            <span class="p-tag p-tag--status-pub">Published</span>
           </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card-tags">
-          <span class="p-tag p-tag--finance">Quant Finance</span>
-          <span class="p-tag p-tag--status-wip">In Progress</span>
-        </div>
-        <h3>Rough Volatility Models in Option Pricing</h3>
-        <p>Exploratory study of fractional Brownian motion and rough Heston models
-           as alternatives to classical Black-Scholes volatility assumptions.</p>
-        <div class="project-card-meta">
-          <span>ISI Kolkata · 2025</span>
-          <div class="project-card-links">
-            <a href="https://github.com/TimeB1729/Rough-Volatility-Models"
-               target="_blank" rel="noopener">GitHub</a>
+          <h3>GP-based Imputation in Kepler Stellar Light Curves</h3>
+          <p>Gaussian Process framework for imputing missing photometric observations.
+             Applied to Kepler mission data across three stellar variability classes.</p>
+          <div class="project-card-meta">
+            <span>Penn State · Summer 2025</span>
+            <div class="project-card-links">
+              <a href="projects/astrostats/Banerjee_GP_Kepler_Imputation_26.pdf"
+                 target="_blank" rel="noopener">PDF</a>
+              <a href="projects/astrostats/astrostats_summer_2025.html">Details</a>
+              <a href="https://github.com/TimeB1729/astrostats-simulations"
+                 target="_blank" rel="noopener">GitHub</a>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <article class="project-card">
-        <div class="project-card-tags">
-          <span class="p-tag p-tag--domain">Time Series</span>
-          <span class="p-tag p-tag--status-wip">Report</span>
-        </div>
-        <h3>Non-stationary Time Series Modeling</h3>
-        <p>Statistical modeling of non-stationary processes; analysis of structural
-           breaks and trend estimation under model uncertainty.</p>
-        <div class="project-card-meta">
-          <span>ISI Kolkata</span>
-          <div class="project-card-links">
-            <a href="projects/skd_sm4_nts_prj.pdf" target="_blank" rel="noopener">PDF</a>
+        <article class="project-card">
+          <div class="project-card-tags">
+            <span class="p-tag p-tag--finance">Quant Finance</span>
+            <span class="p-tag p-tag--status-wip">In Progress</span>
           </div>
-        </div>
-      </article>
+          <h3>Rough Volatility Models in Option Pricing</h3>
+          <p>Exploratory study of fractional Brownian motion and rough Heston models
+             as alternatives to classical Black–Scholes volatility assumptions.</p>
+          <div class="project-card-meta">
+            <span>ISI Kolkata · 2025</span>
+            <div class="project-card-links">
+              <a href="projects/volatility/rough_volatility_models_in_option_pricing.html">Details</a>
+              <a href="https://github.com/TimeB1729/Rough-Volatility-Models"
+                 target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
 
-      <p style="font-family:var(--f-mono); font-size:0.7rem; letter-spacing:0.08em; color:var(--ink-4);">
-        <a href="/projects" style="color:var(--accent); text-decoration:none;">
-          View all projects →
+        <article class="project-card">
+          <div class="project-card-tags">
+            <span class="p-tag p-tag--domain">Time Series</span>
+            <span class="p-tag p-tag--status-wip">Report</span>
+          </div>
+          <h3>Non-stationary Time Series Modeling</h3>
+          <p>Statistical modeling of non-stationary processes; analysis of structural
+             breaks and trend estimation under model uncertainty.</p>
+          <div class="project-card-meta">
+            <span>ISI Kolkata · 2024</span>
+            <div class="project-card-links">
+              <a href="projects/skd_sm4_nts_prj.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+          </div>
+        </article>
+
+        <a href="projects/projects_index.html" class="view-all-link">
+          All projects →
         </a>
-      </p>
-    </section>
+      </section>
 
-    <!-- About -->
-    <section aria-labelledby="about-heading">
-      <h2 class="col-title" id="about-heading">About</h2>
-      <p class="about-text">
-        I'm Shyam Banerjee, a B.Stat undergraduate at the Indian Statistical
-        Institute, Kolkata. My research interests sit where rigorous statistics
-        meets the natural world — building probabilistic models for astrophysical
-        data, understanding the structure of financial volatility, and exploring
-        what Bayesian inference has to say about deeply uncertain systems.
-      </p>
-      <p class="about-text">
-        In summer 2025 I worked with the AstroStatistics group at Penn State on
-        GP-based imputation for Kepler mission data, leading to my first authored
-        paper. I write essays on statistical intuition at
-        <a href="/mindspace">Mindspace</a> and keep a technical notebook at
-        <a href="/codespace">Codespace</a>.
-      </p>
-    </section>
+      <!-- ── About ──────────────────────────────────────────── -->
+      <section aria-labelledby="about-heading">
+        <h2 class="col-title" id="about-heading">About</h2>
+        <p class="about-text">
+          I'm Shyam Banerjee, a B.Stat undergraduate at the Indian Statistical
+          Institute, Kolkata. My research interests sit where rigorous statistics
+          meets the natural world — building probabilistic models for astrophysical
+          data, understanding the structure of financial volatility, and exploring
+          what Bayesian inference has to say about deeply uncertain systems.
+        </p>
+        <p class="about-text">
+          In summer 2025 I worked with the AstroStatistics group at Penn State on
+          GP-based imputation for Kepler mission data, leading to my first authored
+          paper. I write essays on statistical intuition at
+          <a href="mindspace/mindspace_index.html">Mindspace</a> and keep a
+          technical notebook at
+          <a href="codespace/codespaces_index.html">Codespace</a>.
+        </p>
+      </section>
 
-    <!-- Links -->
-    <section aria-labelledby="links-heading">
-      <h2 class="col-title" id="links-heading">Contact</h2>
-      <ul class="link-list">
-        <li>
-          <a href="mailto:b27shyam@gmail.com">b27shyam@gmail.com</a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/shyam-banerjee-179b8b292/"
-             target="_blank" rel="noopener">LinkedIn</a>
-        </li>
-        <li>
-          <a href="https://github.com/TimeB1729"
-             target="_blank" rel="noopener">GitHub</a>
-        </li>
-        <li>
+      <!-- ── Contact + CV ─────────────────────────────────── -->
+      <section aria-labelledby="links-heading">
+        <h2 class="col-title" id="links-heading">Contact</h2>
+        <ul class="link-list">
+          <li>
+            <a href="mailto:b27shyam@gmail.com">b27shyam@gmail.com</a>
+          </li>
+          <li>
+            <a href="https://github.com/TimeB1729"
+               target="_blank" rel="noopener">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/shyam-banerjee-179b8b292/"
+               target="_blank" rel="noopener">LinkedIn</a>
+          </li>
+        </ul>
+
+        <div class="cv-block">
+          <p class="about-text" style="font-size:0.82rem; margin-bottom:var(--s1);">
+            Curriculum vitae, last updated 2025.
+          </p>
           <a href="ISI_Kolkata_resume_Shyam.pdf"
-             target="_blank">Curriculum Vitae</a>
-        </li>
-      </ul>
+             target="_blank" rel="noopener"
+             class="cv-btn">
+            ↓ Download CV
+          </a>
+          <p class="cv-note">PDF · ISI Kolkata resume</p>
+        </div>
+      </section>
+
+    </div><!-- /.home-grid -->
+
+    <!-- ══ MATH SEPARATOR ═══════════════════════════════════ -->
+    <div class="math-sep" aria-hidden="true">∑ · · · P(A|B) · · · λ · · · σ²</div>
+
+    <!-- ══ RESEARCH INTERESTS ════════════════════════════════ -->
+    <section class="interests-section" aria-labelledby="interests-heading">
+      <h2 class="col-title" id="interests-heading">Research Interests</h2>
+      <div class="interests-grid">
+        <div class="interest-card">
+          <span class="interest-card-sym">★</span>
+          <span class="interest-card-name">Astrostatistics</span>
+          <span class="interest-card-note">Probabilistic models for photometric time series, Kepler light curves, stellar variability.</span>
+        </div>
+        <div class="interest-card">
+          <span class="interest-card-sym">P(A|B)</span>
+          <span class="interest-card-name">Bayesian Inference</span>
+          <span class="interest-card-note">Prior specification, posterior computation, hierarchical models and uncertainty quantification.</span>
+        </div>
+        <div class="interest-card">
+          <span class="interest-card-sym">𝒩(μ,K)</span>
+          <span class="interest-card-name">Gaussian Processes</span>
+          <span class="interest-card-note">Kernel methods, covariance structure, GP regression and classification for scientific data.</span>
+        </div>
+        <div class="interest-card">
+          <span class="interest-card-sym">σ(t)</span>
+          <span class="interest-card-name">Time Series</span>
+          <span class="interest-card-note">Non-stationary processes, structural breaks, spectral analysis, and forecasting methods.</span>
+        </div>
+        <div class="interest-card">
+          <span class="interest-card-sym">dS/S</span>
+          <span class="interest-card-name">Quantitative Finance</span>
+          <span class="interest-card-note">Rough volatility, stochastic calculus, options pricing, and statistical arbitrage.</span>
+        </div>
+        <div class="interest-card">
+          <span class="interest-card-sym">ℰ[X]</span>
+          <span class="interest-card-name">Statistical Theory</span>
+          <span class="interest-card-note">Measure-theoretic foundations, asymptotic theory, sufficiency, and decision theory.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ MATH SEPARATOR ═══════════════════════════════════ -->
+    <div class="math-sep" aria-hidden="true">∫ · · · ∇ · · · ∂ · · · ∞</div>
+
+    <!-- ══ TIMELINE ══════════════════════════════════════════ -->
+    <section class="timeline-section" aria-labelledby="timeline-heading">
+      <h2 class="col-title" id="timeline-heading">Research Timeline</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <span class="timeline-date">2022 – Present</span>
+          <p class="timeline-title">B.Stat (Hons.) — Indian Statistical Institute, Kolkata</p>
+          <p class="timeline-body">
+            Four-year undergraduate programme in Statistics. Coursework spans
+            probability theory, stochastic processes, linear models, real analysis,
+            and computational statistics.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-date">Summer 2024</span>
+          <p class="timeline-title">Non-stationary Time Series — ISI Kolkata</p>
+          <p class="timeline-body">
+            Project report on modeling structural breaks and trend estimation in
+            non-stationary processes.
+            <a href="projects/skd_sm4_nts_prj.pdf" target="_blank" rel="noopener">PDF →</a>
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-date">Summer 2025</span>
+          <p class="timeline-title">AstroStatistics Group — Penn State University</p>
+          <p class="timeline-body">
+            Research visit focused on Bayesian methods in astrophysics. Developed
+            a GP-based imputation framework for Kepler stellar light curves across
+            three variability classes. First authored paper.
+            <a href="projects/astrostats/Banerjee_GP_Kepler_Imputation_26.pdf"
+               target="_blank" rel="noopener">Paper →</a>
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-date">2025 – Ongoing</span>
+          <p class="timeline-title">Rough Volatility &amp; Quantitative Finance</p>
+          <p class="timeline-body">
+            Independent study of rough stochastic volatility models, fractional
+            Brownian motion, and the rough Heston model as alternatives to
+            classical Black–Scholes assumptions.
+            <a href="https://github.com/TimeB1729/Rough-Volatility-Models"
+               target="_blank" rel="noopener">GitHub →</a>
+          </p>
+        </div>
+
+      </div>
     </section>
 
   </main>
@@ -169,14 +282,16 @@
   <!-- ══ FOOTER ══════════════════════════════════════════════ -->
   <footer class="site-footer">
     <p>Shyam Banerjee · ISI Kolkata · 2025</p>
-    <div class="footer-links">
-      <a href="/projects">Projects</a>
-      <a href="/mindspace">Mindspace</a>
-      <a href="/codespace">Codespace</a>
-    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="projects/projects_index.html">Projects</a>
+      <a href="mindspace/mindspace_index.html">Mindspace</a>
+      <a href="codespace/codespaces_index.html">Codespace</a>
+      <a href="mailto:b27shyam@gmail.com">Email</a>
+    </nav>
   </footer>
 
   <script>
+    /* ── Theme toggle ─────────────────────────────────────── */
     function toggleTheme() {
       var isDark = document.documentElement.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
@@ -184,6 +299,70 @@
     document.addEventListener('keydown', function(e) {
       if (e.altKey && e.key === 'd') toggleTheme();
     });
+
+    /* ── Starfield ────────────────────────────────────────── */
+    (function() {
+      var canvas = document.getElementById('starfield');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var stars = [];
+      var W, H;
+
+      function resize() {
+        W = canvas.width  = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+
+      function init() {
+        resize();
+        stars = [];
+        // ~180 stars; very sparse feels more like a real sky
+        var count = Math.floor((W * H) / 6000);
+        for (var i = 0; i < count; i++) {
+          stars.push({
+            x:    Math.random() * W,
+            y:    Math.random() * H,
+            r:    Math.random() * 1.1 + 0.2,
+            a:    Math.random(),          // base opacity
+            da:   (Math.random() - 0.5) * 0.003, // twinkle delta
+            speed: Math.random() * 0.012 + 0.003  // drift speed
+          });
+        }
+      }
+
+      var raf;
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (var i = 0; i < stars.length; i++) {
+          var s = stars[i];
+          // gentle twinkle
+          s.a += s.da;
+          if (s.a > 0.85 || s.a < 0.05) s.da *= -1;
+          // very slow upward drift
+          s.y -= s.speed;
+          if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,255,' + s.a.toFixed(3) + ')';
+          ctx.fill();
+        }
+        raf = requestAnimationFrame(draw);
+      }
+
+      // Only run if motion is allowed
+      var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!mq.matches) {
+        init();
+        draw();
+        window.addEventListener('resize', function() {
+          cancelAnimationFrame(raf);
+          init();
+          draw();
+        });
+      } else {
+        canvas.style.display = 'none';
+      }
+    })();
   </script>
 
 </body>

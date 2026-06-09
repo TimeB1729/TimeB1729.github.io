@@ -1,130 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Random Forest Insights | Shyam Banerjee</title>
-  <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #000000;
-    }
-
-    body.dark {
-      --bg-color: #121212;
-      --text-color: #ffffff;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s, color 0.3s;
-      font-family: sans-serif;
-      padding: 20px;
-    }
-
-    .toggle-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 6px 10px;
-      cursor: pointer;
-      background: #ccc;
-      border-radius: 5px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Forests &amp; the Law of Large Numbers | Shyam Banerjee</title>
+  <meta name="description" content="An analogy between Random Forest ensemble methods and the Strong Law of Large Numbers.">
+  <script>
+    (function() {
+      var s = localStorage.getItem('theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && d)) document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
-<body>
-  <div class="toggle-button" onclick="toggleDarkMode()">🌓</div>
+<body class="page-projects">
 
-  <h1>My Insights on Random Forests: From Trees to the Strong Law of Large Numbers</h1>
+  <header class="site-header">
+    <a href="../../index.html" class="site-brand">S. Banerjee</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../projects_index.html" class="active" aria-current="page">Projects</a>
+      <a href="../../mindspace/mindspace_index.html">Mindspace</a>
+      <a href="../../codespace/codespaces_index.html">Codespace</a>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">◐</button>
+  </header>
 
-  <h2>Introduction</h2>
-  <p>In my journey through data science and machine learning, I encountered Random Forests as one of the most powerful yet intuitively appealing ensemble models. What started as a curiosity about how this algorithm handles feature bias soon led me to a beautiful analogy with one of probability theory's cornerstone results: the Law of Large Numbers.</p>
+  <div class="essay-header">
+    <a href="astrostats_summer_2025.html" class="back-link">Astrostats Project</a>
+    <span class="eyebrow" style="color:var(--a-mindspace)">Statistical Learning · Essay</span>
+    <h1>Random Forests: From Trees to the Strong Law of Large Numbers</h1>
+    <p class="lead">A probabilistic analogy that illuminates <em>why</em> ensemble methods work — not just how.</p>
+    <p style="font-family:var(--f-mono); font-size:0.65rem; letter-spacing:0.08em; color:var(--ink-4);">Shyam Banerjee · Summer 2025 · Penn State AstroStats</p>
+  </div>
 
-  <p>This post summarizes the insights I developed while exploring the internal mechanics of Random Forests, particularly around feature randomness, bias mitigation, and convergence behavior.</p>
+  <div class="essay-body">
 
-  <hr>
-  <h2>0. A Brief Overview on Random Forest</h2>
-  <p>Random Forest is basically a machine learning algorithm involving several decision trees to make a better prediction. Each tree involves a random subset of the set of features of the dataset. Their resultant predictions are combined by averaging for regressions.</p>
+    <h2>Introduction</h2>
+    <p>Random Forests emerged as one of the most powerful yet intuitively appealing ensemble models. What started as curiosity about how the algorithm handles feature bias soon led to a satisfying analogy with one of probability theory's cornerstone results: the Law of Large Numbers.</p>
 
-  <p>Working of Random Forest algorithm involves</p>
-  <ul>
-    <li> creation of several decision trees.</li>
-    <li> randomized selection of a subset from the total set of features.</li>
-    <li> each tree being trained on a bootstrap sample (a random sample with replacement) of training data, ensuring independency of each sample.</li>
-    <li> each tree making its prediction, </li>
-    <li> combining the predictions by taking the average of all the predictions.</li>
-  </ul>
+    <hr>
 
-  <hr>
+    <h2>0. A Brief Overview of Random Forests</h2>
+    <p>A Random Forest is an ensemble of decision trees trained on bootstrap samples of the data, each using a random subset of features at each split. Predictions are aggregated by averaging (regression) or majority vote (classification).</p>
+    <ul>
+      <li>Draw <em>B</em> bootstrap samples from the training data.</li>
+      <li>Fit a deep decision tree to each sample, using only <em>m</em> randomly chosen features at each node split.</li>
+      <li>Average the predictions: <code>f̂(x) = (1/B) Σ f̂_b(x)</code></li>
+    </ul>
 
-  <h2>1. The Bias Question: Why Don't Random Forests Favor Weak Features?</h2>
-  <blockquote>
-    “If a Random Forest randomly samples features at each split, isn’t there a risk that weakly correlated predictors might dilute the power of strong ones?”
-  </blockquote>
-  <p>Turns out, the answer lies in the scale of the ensemble. While a single tree may randomly miss important features, across many trees, these stronger predictors will almost certainly appear in the sampled subsets multiple times. When they do, they are likely to be selected for splits because of their better splitting criteria (e.g., lower MSE or higher information gain).</p>
+    <hr>
 
-  <p>Thus, stronger features shape the forest more than weaker ones <em>not because of explicit weighting</em>, but because they consistently perform better in local competitions within the sampled subsets.</p>
+    <h2>1. The Bias Question: Why Don't Weak Features Dilute Strong Ones?</h2>
+    <blockquote><p>If a Random Forest randomly samples features at each split, isn't there a risk that weakly correlated predictors might dilute the power of strong ones?</p></blockquote>
+    <p>The answer lies in scale. While a single tree may randomly miss important features, across many trees the stronger predictors appear in sampled subsets many times. When they do appear, they win the local competition — being selected because they yield better split criteria. Stronger features shape the forest more than weaker ones <em>not through explicit weighting</em>, but because they consistently perform better when they get the chance.</p>
 
-  <hr>
+    <hr>
 
-  <h2>2. Trees Are Noisy: But That’s Okay</h2>
-  <p>Decision Trees are high-variance, low-bias models. They are greedy, often overfit, and highly sensitive to changes in data. But Random Forests convert this weakness into strength by averaging predictions over many such trees. This stabilizes the output and smooths out overfitting.</p>
+    <h2>2. Trees Are Noisy — And That Is Fine</h2>
+    <p>Decision trees are high-variance, low-bias estimators. They overfit, they are sensitive to small perturbations in the data, and they are deeply greedy in their splitting strategy. Random Forests convert this weakness into strength by averaging over many such imperfect trees, stabilising the output and smoothing away the variance.</p>
 
-  <hr>
+    <hr>
 
-  <h2>3. An Analogy with the Law of Large Numbers</h2>
-  <blockquote>
-    "A Decision Tree is to the Weak Law of Large Numbers (WLLN) as a Random Forest is to the Strong Law of Large Numbers (SLLN)."
-  </blockquote>
-  <ul>
-    <li>A single decision tree is like a noisy estimator — it converges <strong>in probability</strong>, but not always reliably.</li>
-    <li>A Random Forest is like an average over many i.i.d. estimators — it converges <strong>almost surely</strong> to the expected predictor, assuming enough trees and enough diversity.</li>
-  </ul>
-  <p>This analogy helped me internalize <em>why</em> ensemble methods work, not just how.</p>
+    <h2>3. The Analogy with the Law of Large Numbers</h2>
+    <div class="pull-quote">"A Decision Tree is to the WLLN as a Random Forest is to the SLLN."</div>
+    <ul>
+      <li>A single decision tree is like one noisy random variable — it converges <strong>in probability</strong> to the expected predictor (Weak LLN), but fluctuates badly on any given realisation.</li>
+      <li>A Random Forest is the average of many approximately i.i.d. estimators. By the Strong Law, this average converges <strong>almost surely</strong> to the expected predictor as the number of trees grows — provided sufficient tree diversity.</li>
+    </ul>
+    <p>The variance reduction is exactly the mechanism of the LLN: Var(f̄) = Var(f̂_b)/B, which shrinks as B grows, assuming low inter-tree correlation.</p>
 
-  <hr>
+    <hr>
 
-  <h2>4. Simulation: Seeing the Law in Action</h2>
-  <p>To visualize this, I ran a simulation using synthetic data based on the function <code>y = sin(x) + noise</code>. I trained several shallow "bad" trees (max depth = 1), several deeper "good" trees (max depth = 4), and finally, a full Random Forest (100 trees, max depth = 4).</p>
+    <h2>4. Simulation: Seeing the Law in Action</h2>
+    <p>To visualise this, I trained shallow "bad" trees (max depth 1), deeper "good" trees (max depth 4), and a full Random Forest (100 trees, max depth 4) on synthetic data generated from <code>y = sin(x) + ε</code>.</p>
 
-  <img src = "randomforest-goodbad_trees.png" alt = "simulation_random_forest">
-  <p>The graph tells a compelling story:</p>
-  <ul>
-    <li>Bad trees fluctuated randomly and missed the true function.</li>
-    <li>Good trees improved the fit but still showed variation.</li>
-    <li>The Random Forest, though built from the same noisy data, <strong>smoothed out the noise and converged to the true signal</strong>.</li>
-  </ul>
+    <img src="../randomforest-goodbad_trees.png"
+         alt="Simulation comparing individual trees versus Random Forest — showing variance reduction as ensemble size grows"
+         style="border-radius:8px; border:0.5px solid var(--paper-3); margin:var(--s4) 0;">
 
-  <p>This is variance reduction in action.</p>
+    <ul>
+      <li>Bad trees (depth 1) fluctuate wildly and miss the true signal entirely.</li>
+      <li>Good individual trees (depth 4) improve the fit but still show instability.</li>
+      <li>The Random Forest — built from the same noisy components — smooths the signal and converges toward the true function. Variance reduction in action.</li>
+    </ul>
 
-  <hr>
+    <hr>
 
-  <h2>Conclusion</h2>
-  <p>Random Forests are elegant because they embrace randomness and imperfection. By averaging weak learners, they unlock a form of statistical wisdom that reflects one of the deepest results in probability: the Law of Large Numbers.</p>
+    <h2>Conclusion</h2>
+    <p>Random Forests are elegant precisely because they embrace randomness. By averaging imperfect learners, they unlock a form of statistical wisdom that reflects one of the deepest results in probability. This exploration sharpened my understanding of ensemble methods and demonstrated something more general: that intuition and formal probability theory can illuminate each other beautifully.</p>
+    <hr>
+    <p style="font-family:var(--f-mono); font-size:0.7rem; color:var(--ink-4);">
+      The simulation notebook is available on <a href="https://github.com/TimeB1729/astrostats_penn-state_2025" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+  </div>
 
-  <p>This exploration not only gave me a stronger grasp of ensemble models but also showed how intuition and formal theory can work hand-in-hand in data science.</p>
-
-  <p>Thanks for reading! If you're curious, you can <a href="https://github.com/TimeB1729/astrostats_penn-state_2025/blob/main/My%20Jupyter%20Notebooks/RandomForestAnalysis.ipynb" target="_blank">view the notebook and simulation here</a>.</p>
-
-  <hr>
-
-  <p><em>Written by Shyam Banerjee, B.Stat Sophomore @ ISI Kolkata | Summer 2025 Student @ Penn State AstroStats</em></p>
-
-  <p><a href="..projects/astrostats_summer_2025.html">← Back to Astrostats  Projects</a></p>
+  <footer class="site-footer">
+    <p>Shyam Banerjee · ISI Kolkata · 2025</p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../projects_index.html">Projects</a>
+      <a href="astrostats_summer_2025.html">Astrostats</a>
+    </nav>
+  </footer>
 
   <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    function toggleTheme() {
+      var isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
-
-    window.onload = () => {
-      if (localStorage.getItem("theme") === "dark" ||
-         (!localStorage.getItem("theme") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.body.classList.add("dark");
-      }
-    };
+    document.addEventListener('keydown', function(e) {
+      if (e.altKey && e.key === 'd') toggleTheme();
+    });
   </script>
 </body>
 </html>

@@ -1,119 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | Shyam Banerjee</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #000000;
-    }
+  <meta name="description" content="Research projects by Shyam Banerjee — astrostatistics, quantitative finance, and statistical modeling.">
 
-    body.dark {
-      --bg-color: #121212;
-      --text-color: #ffffff;
-    }
+  <script>
+    (function() {
+      var s = localStorage.getItem('theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && d)) document.documentElement.classList.add('dark');
+    })();
+  </script>
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s, color 0.3s;
-      font-family: 'Lato', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #0ffaa0;
-      color: rgb(255, 255, 255);
-      padding: 1em;
-      text-align: center;
-    }
-    nav {
-      background-color: #e0e0e0;
-      padding: 1em;
-      text-align: center;
-    }
-    nav a {
-      margin: 0 1em;
-      text-decoration: none;
-      color: #09ac32;
-      font-weight: bold;
-    }
-    nav a.active {
-      text-decoration: underline;
-      color: #005f1f; /* darker shade of green for emphasis */
-    }
-    section {
-      max-width: 1200px;
-      margin: 2em auto;
-      padding: 1em;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s, color 0.3s;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #777;
-      margin: 2em 0;
-    }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    .toggle-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 6px 10px;
-      cursor: pointer;
-      background: #ccc;
-      border-radius: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+<body class="page-projects">
 
-<body>
-  <div class="toggle-button" onclick="toggleDarkMode()">🌓</div>
-
-  <header>
-    <h1>My Projects Index page</h1>
-    <p>Collection of my projects</p>
+  <!-- ══ HEADER ═════════════════════════════════════════════ -->
+  <header class="site-header">
+    <a href="../index.html" class="site-brand">S. Banerjee</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../index.html">Home</a>
+      <a href="projects_index.html" class="active" aria-current="page">Projects</a>
+      <a href="../mindspace/mindspace_index.html">Mindspace</a>
+      <a href="../codespace/codespaces_index.html">Codespace</a>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">◐</button>
   </header>
 
-  <nav>
-    <a class = "back-link" href="../index1.html">Home</a>
-    <a class="active" href="../projects/projects_index.html">Projects</a>
-    <a href="../mindspace/mindspace_index.html">Mindspace</a>
-    <a href="../codespace/codespaces_index.html">Codespace</a>
-  </nav>
+  <!-- ══ PAGE HEADER ════════════════════════════════════════ -->
+  <div class="projects-header">
+    <a href="../index.html" class="back-link">Home</a>
+    <span class="eyebrow" style="color: var(--a-projects);">Research · Projects</span>
+    <h1>Projects</h1>
+    <p class="lead">
+      Statistical modeling at the boundary of astronomy, finance, and probability theory.
+    </p>
+  </div>
 
-  <section>
-    <h2>🧮 My Projects</h2>
-    <ul>
-      <li><a href="astrostats/astrostats_summer_2025.html">📊 AstroStats Summer Research (Penn State)</a></li>
-      <li><a href="volatility/rough_volatility_models_in_option_pricing.html">🧮 Rough Volatility Models</a></li>
-      <li><a href="skd_sm4_nts_prj.pdf" target="_blank">📈 Non-stationary Time Series Modeling</a></li>
-      <!-- Add more projects here -->
-    </ul>
-  </section>
+  <!-- ══ PROJECTS GRID ══════════════════════════════════════ -->
+  <main class="projects-grid">
 
-  <footer>
-    &copy; 2025 Shyam Banerjee | This site is maintained on GitHub Pages.
+    <!-- Featured: Astrostatistics -->
+    <article class="project-card project-card--featured">
+      <div class="project-card-tags">
+        <span class="p-tag p-tag--domain">Astrostatistics</span>
+        <span class="p-tag p-tag--status-pub">Published Paper</span>
+      </div>
+      <h3 style="font-style:normal; font-size: 1.15rem;">GP-based Imputation in Kepler Stellar Light Curves</h3>
+      <p>
+        A Gaussian Process framework for imputing missing photometric observations in
+        Kepler stellar light curves. The study covers three stellar variability classes
+        and demonstrates the GP approach outperforms classical interpolation methods.
+        Work conducted during the AstroStatistics summer programme at Penn State, 2025.
+      </p>
+      <div class="project-card-meta">
+        <span>Penn State · Summer 2025</span>
+        <div class="project-card-links">
+          <a href="astrostats/Banerjee_GP_Kepler_Imputation_26.pdf"
+             target="_blank" rel="noopener">PDF Paper</a>
+          <a href="astrostats/astrostats_summer_2025.html">Full Details</a>
+          <a href="https://github.com/TimeB1729/astrostats-simulations"
+             target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Rough Volatility -->
+    <article class="project-card">
+      <div class="project-card-tags">
+        <span class="p-tag p-tag--finance">Quant Finance</span>
+        <span class="p-tag p-tag--status-wip">In Progress</span>
+      </div>
+      <h3>Rough Volatility Models in Option Pricing</h3>
+      <p>
+        Exploratory study of fractional Brownian motion and rough Heston models
+        as alternatives to classical Black–Scholes volatility assumptions.
+        Focuses on the empirical regularity of realized volatility paths.
+      </p>
+      <div class="project-card-meta">
+        <span>ISI Kolkata · 2025</span>
+        <div class="project-card-links">
+          <a href="volatility/rough_volatility_models_in_option_pricing.html">Details</a>
+          <a href="https://github.com/TimeB1729/Rough-Volatility-Models"
+             target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Non-stationary Time Series -->
+    <article class="project-card">
+      <div class="project-card-tags">
+        <span class="p-tag p-tag--domain">Time Series</span>
+        <span class="p-tag p-tag--status-wip">Report</span>
+      </div>
+      <h3>Non-stationary Time Series Modeling</h3>
+      <p>
+        Statistical modeling of non-stationary processes — analysis of structural
+        breaks and trend estimation under model uncertainty. Written as a course
+        project at ISI Kolkata.
+      </p>
+      <div class="project-card-meta">
+        <span>ISI Kolkata · 2024</span>
+        <div class="project-card-links">
+          <a href="skd_sm4_nts_prj.pdf" target="_blank" rel="noopener">PDF Report</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Random Forests analysis -->
+    <article class="project-card">
+      <div class="project-card-tags">
+        <span class="p-tag p-tag--domain">Statistical Learning</span>
+        <span class="p-tag p-tag--status-wip">Essay</span>
+      </div>
+      <h3>Random Forests and the Law of Large Numbers</h3>
+      <p>
+        An analogy between ensemble tree methods and the Law of Large Numbers —
+        supplementary reading written during the Penn State summer programme.
+      </p>
+      <div class="project-card-meta">
+        <span>Penn State · Summer 2025</span>
+        <div class="project-card-links">
+          <a href="astrostats/random_forests_analysis.html">Read</a>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <p>Shyam Banerjee · ISI Kolkata · 2025</p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="../index.html">Home</a>
+      <a href="../mindspace/mindspace_index.html">Mindspace</a>
+      <a href="../codespace/codespaces_index.html">Codespace</a>
+    </nav>
   </footer>
 
   <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    function toggleTheme() {
+      var isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
-
-    window.onload = () => {
-      if (localStorage.getItem("theme") === "dark" ||
-         (!localStorage.getItem("theme") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.body.classList.add("dark");
-      }
-    };
+    document.addEventListener('keydown', function(e) {
+      if (e.altKey && e.key === 'd') toggleTheme();
+    });
   </script>
+
 </body>
 </html>

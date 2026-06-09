@@ -1,1 +1,7 @@
-theme: minima
+# GitHub Pages configuration
+# No Jekyll theme — site uses its own pure HTML/CSS design system.
+# The 'theme: minima' setting was removed because it injects unwanted
+# styles that conflict with the custom design system in assets/css/main.css.
+
+# This tells GitHub Pages to serve files as-is without Jekyll theme processing.
+# The site is pure static HTML — no Liquid templates, no _layouts, no _includes.
